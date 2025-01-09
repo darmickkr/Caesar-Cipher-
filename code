@@ -1,0 +1,38 @@
+def caesar_cipher_encrypt(text, shift):
+    encrypted_text = ""
+    for letter in text:
+        if letter.isupper():
+            # Shift uppercase letters
+            new_char = chr((ord(letter) - ord('A') + shift) % 26 + ord('A'))
+        elif letter.islower():
+            # Shift lowercase letters
+            new_char = chr((ord(letter) - ord('a') + shift) % 26 + ord('a'))
+        else:
+            # Non-alphabetic characters remain unchanged
+            new_char = letter
+        encrypted_text += new_char
+    return encrypted_text
+
+def caesar_cipher_decrypt(encrypted_text, shift):
+    decrypted_text = ""
+    for letter in encrypted_text:
+        if letter.isupper():
+            # Reverse shift uppercase letters
+            new_char = chr((ord(letter) - ord('A') - shift) % 26 + ord('A'))
+        elif letter.islower():
+            # Reverse shift lowercase letters
+            new_char = chr((ord(letter) - ord('a') - shift) % 26 + ord('a'))
+        else:
+            # Non-alphabetic characters remain unchanged
+            new_char = letter
+        decrypted_text += new_char
+    return decrypted_text
+
+# Example usage
+text = "Hello World!"
+shift = 3
+encrypted_text = caesar_cipher_encrypt(text, shift)
+print("Encrypted text:", encrypted_text)
+
+decrypted_text = caesar_cipher_decrypt(encrypted_text, shift)
+print("Decrypted text:", decrypted_text)
